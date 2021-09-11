@@ -31,7 +31,7 @@ const App = () => {
                         flexWrap: "wrap",
                         justifyContent: "center",
                         border: "2px solid",
-                        borderColor: "purple",
+                        borderColor: "#312545",
                     }}
                 />
             </div>
@@ -52,18 +52,20 @@ const App = () => {
                     Take photo
                 </Button>
             </div>
-            <div style={{
-                        width: "30%",
-                        height: "30%",
-                        display: "flex",
-                        margin: "auto",
-                        marginBottom: "5px",
-                        flexWrap: "wrap",
-                        justifyContent: "center",
-                        border: "2px solid",
-                        borderColor: "purple",
-                    }}>
-                  {imgSrc && <img src={imgSrc} />}
+            <div
+                style={{
+                    width: "30%",
+                    height: "30%",
+                    display: "flex",
+                    margin: "auto",
+                    marginBottom: "5px",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                    // border: "2px solid",
+                    // borderColor: "#312545",
+                }}
+            >
+                {imgSrc && <img src={imgSrc} />}
             </div>
         </div>
     );
