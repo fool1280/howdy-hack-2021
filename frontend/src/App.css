@@ -6,3 +6,8 @@ html {
     background-size: cover;
     -webkit-text-size-adjust: auto
 }
+
+h1 {
+    background-color: transparent;
+    color: whitesmoke;
+}

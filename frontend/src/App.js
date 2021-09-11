@@ -16,7 +16,7 @@ const App = () => {
     return (
         <div>
             <div style={{ justifyContent: "center", alignItems: "center", textAlign: "center" }}>
-                <h1>TODO</h1>
+                <h1>mello.</h1>
                 <Webcam
                     audio={false}
                     ref={webcamRef}
