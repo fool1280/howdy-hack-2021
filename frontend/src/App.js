@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import Button from "@material-ui/core/Button";
 import Webcam from "react-webcam";
+import background from "./background.jpg";
 
 const App = () => {
     const webcamRef = React.useRef(null);
@@ -8,11 +9,12 @@ const App = () => {
 
     const capture = React.useCallback(() => {
         const imageSrc = webcamRef.current.getScreenshot();
+        //const data = imageSrc;
         setimgSrc(imageSrc);
     }, [webcamRef, setimgSrc]);
 
     return (
-        <div style={{ backgroundImage: imgSrc }}>
+        <div style={{ backgroundImage: `url(${background})` }}>
             <div style={{ justifyContent: "center", alignItems: "center", textAlign:"center" }}>
                 <h1>Welcome</h1>
                 <Webcam
