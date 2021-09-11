@@ -1,4 +1,4 @@
-# Howdy Hack 2021: 
+# Howdy Hack 2021:
 
 ### Team Members:
 
@@ -6,22 +6,24 @@ Kaleb Dickerson, Phu Jack Nguyen, Anh Nguyen, Anh Hoang.
 
 ### Summary
 
-Use python and OpenCV to detect user's mood using facial recognition and play corresponding song on spotify.  
+Use python and OpenCV to detect user's mood using facial recognition and play corresponding song on spotify.
 
-Angry -> Rap  
+Angry -> Rap
 
-Disgust -> Punk/Emo  
+Disgust -> Punk/Emo
 
-Fear -> Classical  
+Fear -> Classical
 
-Happy -> Pop  
+Happy -> Pop
 
-Neutral -> Jazz  
+Neutral -> Jazz
 
-Sad -> Country  
+Sad -> Country
 
-Surprise ->  Rick Roll
+Surprise -> Rick Roll
 
-![alt text](Images/SpotifyEmotions.png)  
+![alt text](Images/SpotifyEmotions.png)
 
 (from https://sites.tufts.edu/eeseniordesignhandbook/2015/music-mood-classification/)
+
+(used material UI npm install @material-ui/core)
