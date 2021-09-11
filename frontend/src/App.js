@@ -13,11 +13,54 @@ const App = () => {
 
     return (
         <div>
-            <Webcam audio={false} height={720} ref={webcamRef} screenshotFormat="image/jpeg" width={1280} />
-            <Button variant="contained" color="secondary" onClick={capture}>
-                Take photo
-            </Button>
-            {imgSrc && <img src={imgSrc} />}
+            <div style={{ justifyContent: "center", alignItems: "center" }}>
+                <Webcam
+                    audio={false}
+                    ref={webcamRef}
+                    screenshotFormat="image/png"
+                    style={{
+                        width: "30%",
+                        height: "30%",
+                        display: "flex",
+                        margin: "auto",
+                        marginBottom: "5px",
+                        flexWrap: "wrap",
+                        justifyContent: "center",
+                        border: "2px solid",
+                        borderColor: "purple",
+                    }}
+                />
+            </div>
+            <div style={{ justifyContent: "center", alignItems: "center" }}>
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={capture}
+                    style={{
+                        display: "flex",
+                        margin: "auto",
+                        marginBottom: "5px",
+                        width: 300,
+                        flexWrap: "wrap",
+                        justifyContent: "center",
+                    }}
+                >
+                    Take photo
+                </Button>
+            </div>
+            <div style={{
+                        width: "30%",
+                        height: "30%",
+                        display: "flex",
+                        margin: "auto",
+                        marginBottom: "5px",
+                        flexWrap: "wrap",
+                        justifyContent: "center",
+                        border: "2px solid",
+                        borderColor: "purple",
+                    }}>
+                  {imgSrc && <img src={imgSrc} />}
+            </div>
         </div>
     );
 };
