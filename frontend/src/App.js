@@ -3,7 +3,6 @@ import Button from "@material-ui/core/Button";
 import Webcam from "react-webcam";
 import "./App.css";
 
-
 const App = () => {
     const webcamRef = React.useRef(null);
     const [imgSrc, setimgSrc] = React.useState(null);
@@ -17,7 +16,7 @@ const App = () => {
     return (
         <div>
             <div style={{ justifyContent: "center", alignItems: "center", textAlign: "center" }}>
-                <h1>Welcome</h1>
+                <h1>TODO</h1>
                 <Webcam
                     audio={false}
                     ref={webcamRef}
@@ -53,20 +52,22 @@ const App = () => {
                     Take photo
                 </Button>
             </div>
-            <div
-                style={{
-                    width: "30%",
-                    height: "30%",
-                    display: "flex",
-                    margin: "auto",
-                    marginBottom: "5px",
-                    flexWrap: "wrap",
-                    justifyContent: "center",
-                }}
-            >
-                {imgSrc && <img src={imgSrc}  style={{borderRadius:"10px",border: "2px solid",
-                    borderColor: "#312545"}}/>}
-            </div>
+            {imgSrc && (
+                <img
+                    src={imgSrc}
+                    style={{
+                        borderRadius: "10px",
+                        border: "2px solid",
+                        width: "30%",
+                        height: "30%",
+                        display: "flex",
+                        margin: "auto",
+                        flexWrap: "wrap",
+                        justifyContent: "center",
+                        borderColor: "#312545",
+                    }}
+                />
+            )}
         </div>
     );
 };
