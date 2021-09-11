@@ -14,8 +14,8 @@ const App = () => {
     }, [webcamRef, setimgSrc]);
 
     return (
-        <div style={{ backgroundImage: `url(${background})` }}>
-            <div style={{ justifyContent: "center", alignItems: "center", textAlign:"center" }}>
+        <div>
+            <div style={{ justifyContent: "center", alignItems: "center", textAlign: "center" }}>
                 <h1>Welcome</h1>
                 <Webcam
                     audio={false}
