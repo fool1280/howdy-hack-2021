@@ -6,20 +6,21 @@ Kaleb Dickerson, Phu Jack Nguyen, Anh Nguyen, Anh Hoang.
 
 ### Summary
 
-Use python and OpenCV to detect user's mood using facial recognition and play corresponding song on spotify.
+Use python and OpenCV to detect user's mood using facial recognition and play corresponding song on spotify.  
+
 Angry -> Rap  
 
-Disgust ->  
+Disgust -> Punk/Emo  
 
-Fear ->  
+Fear -> Classical  
 
-Happy ->  
+Happy -> Pop  
 
-Neutral ->  
+Neutral -> Jazz  
 
-Sad ->  
+Sad -> Country  
 
-Surprise ->  
+Surprise ->  Rick Roll
 
 ![alt text](Images/SpotifyEmotions.png)  
 
