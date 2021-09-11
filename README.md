@@ -1,4 +1,4 @@
-# howdy-hack-2021
+# Howdy Hack 2021: 
 
 ### Team Members:
 
@@ -15,3 +15,4 @@ Neutral ->
 Sad ->
 Surprise ->
 ![alt text](Images/SpotifyEmotions.png)
+Use Python and OpenCV to detect user's mood using facial recognition and play corresponding song on spotify.
