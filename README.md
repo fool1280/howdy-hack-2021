@@ -1,4 +1,4 @@
-# howdy-hack-2021
+# Howdy Hack 2021:
 
 ### Team Members:
 
