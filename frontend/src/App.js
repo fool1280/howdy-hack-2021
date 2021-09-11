@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import Button from "@material-ui/core/Button";
 import Webcam from "react-webcam";
-import background from "./background.jpg";
 import "./App.css";
 
 
@@ -31,8 +30,7 @@ const App = () => {
                         marginBottom: "5px",
                         flexWrap: "wrap",
                         justifyContent: "center",
-                        border: "2px solid",
-                        borderColor: "#312545",
+                        borderRadius: "10px",
                     }}
                 />
             </div>
@@ -55,18 +53,15 @@ const App = () => {
             </div>
             <div
                 style={{
-                    width: "30%",
-                    height: "30%",
+                    width: 300,
                     display: "flex",
                     margin: "auto",
                     marginBottom: "5px",
                     flexWrap: "wrap",
                     justifyContent: "center",
-                    // border: "2px solid",
-                    // borderColor: "#312545",
                 }}
             >
-                {imgSrc && <img src={imgSrc} />}
+                {imgSrc && <img style={{borderRadius: "10px"}} src={imgSrc} />}
             </div>
         </div>
     );
