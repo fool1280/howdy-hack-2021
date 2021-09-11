@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import Camera from "./Camera";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
