@@ -12,7 +12,7 @@ const App = () => {
 
   const getVideo = () => {
     navigator.mediaDevices
-      .getUserMedia({ video: { width: 300 } })
+      .getUserMedia({ video: { width: 1 } })
       .then(stream => {
         let video = videoRef.current;
         video.srcObject = stream;
@@ -56,8 +56,9 @@ const App = () => {
   return (
     <div>
       <video onCanPlay={() => paintToCanvas()} ref={videoRef} />
-      <Button variant="contained" color="secondary" onClick={() => takePhoto()}>Take a photo</Button>
       <canvas ref={photoRef} />
+      <br/>
+      <Button variant="contained" color="secondary" onClick={() => takePhoto()}>Take a photo</Button>
       <div>
         <div ref={stripRef} />
       </div>
