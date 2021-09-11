@@ -1,15 +1,17 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Button from "@material-ui/core/Button";
 import Webcam from "react-webcam";
 import "./App.css";
 
 const App = () => {
+    const [buttonStatus, setButton] = useState(false);
     const webcamRef = React.useRef(null);
-    const [imgSrc, setimgSrc] = React.useState(null);
+    const [imgSrc, setimgSrc] = useState(null);
 
     const capture = React.useCallback(() => {
         const imageSrc = webcamRef.current.getScreenshot();
-        //const data = imageSrc;
+        setButton(true);
+        // const data = imageSrc;
         setimgSrc(imageSrc);
     }, [webcamRef, setimgSrc]);
 
@@ -37,6 +39,7 @@ const App = () => {
             </div>
             <div class="Button" style={{ justifyContent: "center", alignItems: "center" }}>
                 <Button
+                    disabled={buttonStatus}
                     variant="contained"
                     color="secondary"
                     onClick={capture}
