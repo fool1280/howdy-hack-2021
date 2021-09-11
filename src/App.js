@@ -1,6 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 
+import GetRequest  from './components/GetRequest.js';
+
 function App() {
   return (
     <div className="App">
@@ -17,6 +19,8 @@ function App() {
         >
           Learn React
         </a>
+
+        < GetRequest/>
       </header>
     </div>
   );
