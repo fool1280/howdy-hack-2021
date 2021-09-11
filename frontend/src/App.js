@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import Button from "@material-ui/core/Button";
+
 const App = () => {
     const videoRef = useRef(null);
 
@@ -10,12 +11,12 @@ const App = () => {
     const getVideo = () => {
         navigator.mediaDevices
             .getUserMedia({ video: { width: 300 } })
-            .then(stream => {
+            .then((stream) => {
                 let video = videoRef.current;
                 video.srcObject = stream;
                 video.play();
             })
-            .catch(err => {
+            .catch((err) => {
                 console.error("error:", err);
             });
     };
@@ -23,7 +24,9 @@ const App = () => {
     return (
         <div>
             <div>
-                <Button variant="contained" color="secondary">Take a photo</Button>
+                <Button variant="contained" color="secondary">
+                    Take a photo
+                </Button>
                 <video ref={videoRef} />
             </div>
         </div>
