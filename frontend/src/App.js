@@ -2,6 +2,8 @@ import React, { useRef } from "react";
 import Button from "@material-ui/core/Button";
 import Webcam from "react-webcam";
 import background from "./background.jpg";
+import "./App.css";
+
 
 const App = () => {
     const webcamRef = React.useRef(null);
@@ -14,8 +16,7 @@ const App = () => {
     }, [webcamRef, setimgSrc]);
 
     return (
-        
-        <div style={{backgroundImage: `url(${background})` }}>
+        <div>
             <div style={{ justifyContent: "center", alignItems: "center" }}>
                 <Webcam
                     audio={false}
@@ -34,7 +35,7 @@ const App = () => {
                     }}
                 />
             </div>
-            <div style={{ justifyContent: "center", alignItems: "center" }}>
+            <div class="Button" style={{ justifyContent: "center", alignItems: "center" }}>
                 <Button
                     variant="contained"
                     color="secondary"
