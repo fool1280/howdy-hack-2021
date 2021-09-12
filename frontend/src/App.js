@@ -4,6 +4,8 @@ import Webcam from "react-webcam";
 import "./App.css";
 import axios from "axios";
 import GitHubIcon from "@material-ui/icons/GitHub";
+import SpotifyPlayer from "react-spotify-player";
+// import SpotifyPlayer from "react-spotify-web-playback";
 
 function postImage(image, title) {
     let form_data = new FormData();
@@ -20,6 +22,20 @@ function postImage(image, title) {
             console.log(res.data);
         })
         .catch((err) => console.log(err));
+}
+
+async function getCategory() {
+    fetch("https://localhost:8000", {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            firstParam: "yourValue",
+            secondParam: "yourOtherValue",
+        }),
+    });
 }
 
 const App = () => {
@@ -54,7 +70,7 @@ const App = () => {
                         border: "2px solid",
                         borderColor: "#312545",
                         borderRadius: "10px",
-                        transform: 'rotateY(180deg)'
+                        transform: "rotateY(180deg)",
                     }}
                 />
             </div>
@@ -89,11 +105,16 @@ const App = () => {
                         flexWrap: "wrap",
                         justifyContent: "center",
                         borderColor: "#312545",
-                        transform: 'rotateY(180deg)'
+                        transform: "rotateY(180deg)",
                     }}
                     alt="face capture"
                 />
             )}
+            {/* <SpotifyPlayer
+                token="BQA4O_zFd-knN-WC76MKILhomAS3rO6koJ0CVLI2kyt9z0LLTDtgR85gItqi8rFYGF4LJS1W88lOmWs3uSDOa-bSrjSR-a1O0vn49BqXKdXbAKxeBhqmGNk34ct0sr4CUwIBDS_cNKQPP2cfisti6_svsuBUu1E"
+                uris={["spotify:artist:6HQYnRM4OzToCYPpVBInuU"]}
+            /> */}
+            <SpotifyPlayer uri="spotify:album:1TIUsv8qmYLpBEhvmBmyBk" view="coverart" theme="black" />
             <a href="https://github.com/fool1280/howdy-hack-2021">
                 <GitHubIcon style={{ margin: "12px", position: "fixed", bottom: "0px", right: "0px", color: "whitesmoke" }} />{" "}
             </a>
