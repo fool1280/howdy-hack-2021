@@ -39,7 +39,6 @@ const App = () => {
     useEffect(() => {
         if (!(imgSrc === null)) {
             sendData(imgSrc);
-            console.log(mood);
         }
     }, [imgSrc]);
     return (
