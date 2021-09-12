@@ -5,7 +5,6 @@ import axios from "axios";
 import "./App.css";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import SpotifyPlayer from "react-spotify-player";
-import GetSongRequest from "./components/GetSongRequest";
 // import SpotifyPlayer from "react-spotify-web-playback";
 
 const access_token =
@@ -32,12 +31,22 @@ const App = () => {
     const allMaxEnergy = [0.6, 1, 0.2, 1.0, 0.9, 0.6, 1];
     const allMinLoudness = [-10.0, -10, -40.0, -10.0, -10, -25, 1];
     const allMaxLoudness = [0.0, 0.0, -15.0, 0.0, 0.0, -5, 1];
-    //const allMinPopularity =    [ 0.5 ]
-    //const allMaxPopularity =    [ 1]
     const allMinValence = [0.1, 0.25, 0.0, 0.7, 0.1, 0.0, 1];
     const allMaxValence = [0.5, 0.5, 0.5, 1.0, 0.4, 0.4, 1];
     const allMinTempo = [50, 80, 90, 90, 80, 60, 1];
     const allMaxTempo = [200, 150, 180, 180, 170, 200, 1];
+    const minPopularity = 0.0;
+    const maxPopularity = 1;
+
+    const [moodID, setMoodID] = useState(0);
+    const [suggestSong, setSuggestSong] = useState([]);
+    const [market, setMarket] = useState("UK");
+    const [gernes, setGernes] = useState("");
+    const [minDanceability, setMinDanceability] = useState(0);
+    const [minEnergy, setMinEnergy] = useState(0);
+    const [minLoudness, setMinLoudness] = useState(-50);
+    const [minValence, setMinValence] = useState(0);
+    const [minTempo, setMinTempo] = useState(0);
 
     const capture = React.useCallback(() => {
         const imageSrc = webcamRef.current.getScreenshot();
@@ -61,14 +70,74 @@ const App = () => {
         setMood(result);
         setButton(false);
     };
+    const getInfoPlaceHolder = async () => {
+        setMarket("US");
+        setGernes("country");
+        setMoodID(allMood.findIndex((element) => (element = mood))); // fix this later
+        setMinDanceability(allMinDanceability[moodID]);
+        setMinEnergy(allMinEnergy[moodID]);
+        setMinLoudness(allMinLoudness[moodID]);
+        setMinValence(allMinValence[moodID]);
+        setMinTempo(allMinTempo[moodID]);
+    };
+    const getSuggestSong = async () => {
+        let url =
+            "https://api.spotify.com/v1/recommendations?limit=1&market=" +
+            market +
+            "&seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=" +
+            gernes +
+            "&seed_tracks=0c6xIDDpzE81m2q797ordA" +
+            "&min_danceability=" +
+            minDanceability +
+            "&min_energy=" +
+            minEnergy +
+            "&min_loudness=" +
+            minLoudness +
+            "&min_popularity=" +
+            minPopularity +
+            "&min_tempo=" +
+            minTempo +
+            "&min_valence=" +
+            minValence;
+        let result = await axios
+            .get(url, {
+                headers: {
+                    Authorization: `Bearer ${access_token}`,
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                },
+            })
+            .then((res) => res.data.tracks);
+        console.log("result", result);
+        setSuggestSong(result);
+    };
     useEffect(() => {
         if (!(imgSrc === null)) {
             sendData(imgSrc);
         }
         if (!(mood === "")) {
             console.log("mood:", mood);
+            getInfoPlaceHolder();
         }
-    }, [imgSrc, mood]);
+        if (minTempo !== 0) {
+            console.log("minDance:", minDanceability);
+            console.log("minEnergy:", minEnergy);
+            console.log("minLoudness:", minLoudness);
+            console.log("minPopularity:", minPopularity);
+            console.log("minTempo:", minTempo);
+            console.log("minValence:", minValence);
+            getSuggestSong();
+        }
+    }, [
+        imgSrc,
+        mood,
+        minDanceability,
+        minEnergy,
+        minLoudness,
+        minPopularity,
+        minTempo,
+        minValence,
+    ]);
     return (
         <div style={{ alignItems: "center", textAlign: "center" }}>
             <h1>mello.</h1>
@@ -197,7 +266,13 @@ const App = () => {
                     />{" "}
                 </a>
             </div>
-            <GetSongRequest />
+            <div>
+                {suggestSong.length !== 0
+                    ? suggestSong.map((item, index) => (
+                          <p key={index}>{item.name}</p>
+                      ))
+                    : ""}
+            </div>
         </div>
     );
 };
