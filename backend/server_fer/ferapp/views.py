@@ -6,6 +6,8 @@ from rest_framework.response import Response
 from rest_framework import status
 import cv2
 import os
+import base64
+import numpy as np
 from fer import FER
 # Create your views here.
 
@@ -26,9 +28,14 @@ class PostCreate(APIView):
         posts_serializer = PostSerializer(data=request.data)
         if posts_serializer.is_valid():
             posts_serializer.save()
-            image = cv2.imread(os.getcwd() + posts_serializer.data['image'])
+            encoded_string = posts_serializer.data['content'].split(',')[1]
+            decoded_data = base64.b64decode(encoded_string)
+            np_data = np.frombuffer(decoded_data, np.uint8)
+            img = cv2.imdecode(np_data, cv2.IMREAD_UNCHANGED)
+            output_image = cv2.imwrite(os.getcwd() + "test.jpg", img)
+            image_load = cv2.imread(os.getcwd() + "test.jpg")
             detector = FER(mtcnn=True)
-            result = detector.top_emotion(image)
+            result = detector.top_emotion(image_load)
             return Response(result[0], status=status.HTTP_201_CREATED)
         else:
             print('error', posts_serializer.errors)
