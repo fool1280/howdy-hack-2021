@@ -8,7 +8,7 @@ import SpotifyPlayer from "react-spotify-player";
 // import SpotifyPlayer from "react-spotify-web-playback";
 
 const access_token =
-    "BQBbE9FdjKQ97KLfbsVcKmBmlapBMAw_JhYSme7trxROwwuVqhZMDZpcxckbd0XhqBtyUdFjxbL1RznHgIeuFdxG5Xz172YidddD6j7U9KvkJigvPWbeWz4kgi3WXidMKfTagTksiTX-_5_EfaSDZcHd3WPaN_19SwbAt0fBCUs";
+    "BQBZnqf0yzNC0oNrA6O4_nt_gl6aJIyX-L_0Xn1_IViJXDp3LcGyLSYy6y4Ia3T-ZGwlXBPoAOKQrCeHlOs1F9TMEM1rGgwMOdC8RmM3L3NfvLtKTlqdYczi5ncgMsk9jhtqHjqQ2jTPAA05HjWMGu5sqdtNDdrFNH1rHiBM7W0";
 
 const App = () => {
     const [buttonStatus, setButton] = useState(false);
@@ -225,6 +225,9 @@ const App = () => {
                         alignItems: "center",
                     }}
                 >
+                    <div>
+                        <h1>{mood === "" ? "Hello..." : mood}</h1>
+                    </div>
                     {suggestSong.length !== 0 ? (
                         mood === "surprise" ? (
                             <div>
@@ -267,13 +270,6 @@ const App = () => {
                         }}
                     />{" "}
                 </a>
-            </div>
-            <div>
-                {suggestSong.length !== 0
-                    ? suggestSong.map((item, index) => (
-                          <p key={index}>{item.name}</p>
-                      ))
-                    : ""}
             </div>
         </div>
     );
