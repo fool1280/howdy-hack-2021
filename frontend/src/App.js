@@ -1,7 +1,25 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import Webcam from "react-webcam";
 import "./App.css";
+import axios from "axios";
+
+function postImage(image, title) {
+    let form_data = new FormData();
+    form_data.append("title", title);
+    form_data.append("image", image);
+    let url = "http://localhost:8000/uploads";
+    axios
+        .post(url, form_data, {
+            headers: {
+                "content-type": "multipart/form-data",
+            },
+        })
+        .then((res) => {
+            console.log(res.data);
+        })
+        .catch((err) => console.log(err));
+}
 
 const App = () => {
     const [buttonStatus, setButton] = useState(false);
@@ -12,6 +30,7 @@ const App = () => {
         const imageSrc = webcamRef.current.getScreenshot();
         setButton(true);
         // const data = imageSrc;
+        postImage(imageSrc, "capture.png");
         setimgSrc(imageSrc);
     }, [webcamRef, setimgSrc]);
 
@@ -37,7 +56,7 @@ const App = () => {
                     }}
                 />
             </div>
-            <div class="Button" style={{ justifyContent: "center", alignItems: "center" }}>
+            <div style={{ justifyContent: "center", alignItems: "center" }}>
                 <Button
                     disabled={buttonStatus}
                     variant="contained"
@@ -69,7 +88,7 @@ const App = () => {
                         justifyContent: "center",
                         borderColor: "#312545",
                     }}
-                />
+                alt="face capture" />
             )}
         </div>
     );
