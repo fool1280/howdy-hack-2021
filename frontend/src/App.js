@@ -119,8 +119,7 @@ const App = () => {
                 uris={["spotify:artist:6HQYnRM4OzToCYPpVBInuU"]}
             /> */}
                 <div style={{ width: "50%", justifyContent: "center", alignItems: "center" }}>
-                    <h1></h1>
-                    <SpotifyPlayer uri="spotify:album:1TIUsv8qmYLpBEhvmBmyBk" view="coverart" theme="black" />
+                    <SpotifyPlayer uri="spotify:album:1TIUsv8qmYLpBEhvmBmyBk" width="100%" view="coverart" theme="black" />
                 </div>
                 <a href="https://github.com/fool1280/howdy-hack-2021">
                     <GitHubIcon style={{ margin: "12px", position: "fixed", bottom: "0px", right: "0px", color: "whitesmoke" }} />{" "}
