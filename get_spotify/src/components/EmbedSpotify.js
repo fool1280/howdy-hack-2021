@@ -4,7 +4,6 @@ import axios from 'axios';
 function EmbedSpotify() {
     return (
         <div>
-            Testing
         </div>
     )
 }
