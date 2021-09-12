@@ -17,7 +17,13 @@ const App = () => {
 
     return (
         <div>
-            <div style={{ justifyContent: "center", alignItems: "center", textAlign: "center" }}>
+            <div
+                style={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                    textAlign: "center",
+                }}
+            >
                 <h1>mello.</h1>
                 <Webcam
                     audio={false}
@@ -37,7 +43,10 @@ const App = () => {
                     }}
                 />
             </div>
-            <div class="Button" style={{ justifyContent: "center", alignItems: "center" }}>
+            <div
+                class="Button"
+                style={{ justifyContent: "center", alignItems: "center" }}
+            >
                 <Button
                     disabled={buttonStatus}
                     variant="contained"
