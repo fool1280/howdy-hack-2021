@@ -29,8 +29,7 @@ class PostCreate(APIView):
             image = cv2.imread(os.getcwd() + posts_serializer.data['image'])
             detector = FER(mtcnn=True)
             result = detector.top_emotion(image)
-            print(result)
-            return Response(posts_serializer.data, status=status.HTTP_201_CREATED)
+            return Response(result[0], status=status.HTTP_201_CREATED)
         else:
             print('error', posts_serializer.errors)
             return Response(posts_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
