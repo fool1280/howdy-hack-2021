@@ -52,17 +52,18 @@ const App = () => {
     }, [webcamRef, setimgSrc]);
 
     return (
-        <div style={{ display: "flex", flexDirection: "row" }}>
+        <div style={{ alignItems: "center", textAlign: "center" }}>
+            <h1>mello.</h1>
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", textAlign: "center" }}>
             <div>
                 <div style={{ justifyContent: "center", alignItems: "center", textAlign: "center" }}>
-                    <h1>mello.</h1>
                     <Webcam
                         audio={false}
                         ref={webcamRef}
                         screenshotFormat="image/png"
                         style={{
-                            width: "30%",
-                            height: "30%",
+                            width: "45%",
+                            height: "40%",
                             display: "flex",
                             margin: "auto",
                             marginBottom: "5px",
@@ -99,8 +100,8 @@ const App = () => {
                         style={{
                             borderRadius: "10px",
                             border: "2px solid",
-                            width: "30%",
-                            height: "30%",
+                            width: "45%",
+                            height: "40%",
                             display: "flex",
                             margin: "auto",
                             flexWrap: "wrap",
@@ -110,19 +111,20 @@ const App = () => {
                         }}
                         alt="face capture"
                     />
-                )}
-            </div>
+                )}</div>
+            
             {/* <SpotifyPlayer
                 token="BQA4O_zFd-knN-WC76MKILhomAS3rO6koJ0CVLI2kyt9z0LLTDtgR85gItqi8rFYGF4LJS1W88lOmWs3uSDOa-bSrjSR-a1O0vn49BqXKdXbAKxeBhqmGNk34ct0sr4CUwIBDS_cNKQPP2cfisti6_svsuBUu1E"
                 uris={["spotify:artist:6HQYnRM4OzToCYPpVBInuU"]}
             /> */}
             <div>
+                <h1></h1>
                 <SpotifyPlayer uri="spotify:album:1TIUsv8qmYLpBEhvmBmyBk" view="coverart" theme="black" />
             </div>
             <a href="https://github.com/fool1280/howdy-hack-2021">
                 <GitHubIcon style={{ margin: "12px", position: "fixed", bottom: "0px", right: "0px", color: "whitesmoke" }} />{" "}
             </a>
-        </div>
+        </div></div>
     );
 };
 
