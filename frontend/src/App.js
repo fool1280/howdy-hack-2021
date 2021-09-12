@@ -3,6 +3,7 @@ import Button from "@material-ui/core/Button";
 import Webcam from "react-webcam";
 import "./App.css";
 import axios from "axios";
+import GitHubIcon from "@material-ui/icons/GitHub";
 
 function postImage(image, title) {
     let form_data = new FormData();
@@ -53,6 +54,7 @@ const App = () => {
                         border: "2px solid",
                         borderColor: "#312545",
                         borderRadius: "10px",
+                        transform: 'rotateY(180deg)'
                     }}
                 />
             </div>
@@ -87,9 +89,14 @@ const App = () => {
                         flexWrap: "wrap",
                         justifyContent: "center",
                         borderColor: "#312545",
+                        transform: 'rotateY(180deg)'
                     }}
-                alt="face capture" />
+                    alt="face capture"
+                />
             )}
+            <a href="https://github.com/fool1280/howdy-hack-2021">
+                <GitHubIcon style={{ margin: "12px", position: "fixed", bottom: "0px", right: "0px", color: "whitesmoke" }} />{" "}
+            </a>
         </div>
     );
 };
