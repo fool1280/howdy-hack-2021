@@ -3,7 +3,6 @@ import Button from "@material-ui/core/Button";
 import Webcam from "react-webcam";
 import axios from "axios";
 import "./App.css";
-import axios from "axios";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import SpotifyPlayer from "react-spotify-player";
 // import SpotifyPlayer from "react-spotify-web-playback";
@@ -17,8 +16,6 @@ const App = () => {
     const capture = React.useCallback(() => {
         const imageSrc = webcamRef.current.getScreenshot();
         setButton(true);
-        // const data = imageSrc;
-        postImage(imageSrc, "capture.png");
         setimgSrc(imageSrc);
     }, [webcamRef, setimgSrc]);
 
@@ -27,28 +24,48 @@ const App = () => {
             title: "test",
             content: imgSrc,
         });
-        //console.log("Data:", data);
         let url = "http://localhost:8000/ferapp/posts/create/";
         let headers = {
             "Content-Type": "application/json",
+            Accept: "application/json",
         };
         let result = await axios
             .post(url, data, { headers })
             .then((result) => result.data);
         console.log("Result:", result);
+        setMood(result);
         setButton(false);
     };
     useEffect(() => {
         if (!(imgSrc === null)) {
             sendData(imgSrc);
         }
-    }, [buttonStatus, imgSrc]);
+    }, [imgSrc]);
     return (
         <div style={{ alignItems: "center", textAlign: "center" }}>
             <h1>mello.</h1>
-            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", textAlign: "center" }}>
-                <div style={{ width: "50%", justifyContent: "center", alignItems: "center" }}>
-                    <div style={{ justifyContent: "center", alignItems: "center", textAlign: "center" }}>
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    textAlign: "center",
+                }}
+            >
+                <div
+                    style={{
+                        width: "50%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                >
+                    <div
+                        style={{
+                            justifyContent: "center",
+                            alignItems: "center",
+                            textAlign: "center",
+                        }}
+                    >
                         <Webcam
                             audio={false}
                             ref={webcamRef}
@@ -68,7 +85,12 @@ const App = () => {
                             }}
                         />
                     </div>
-                    <div style={{ justifyContent: "center", alignItems: "center" }}>
+                    <div
+                        style={{
+                            justifyContent: "center",
+                            alignItems: "center",
+                        }}
+                    >
                         <Button
                             disabled={buttonStatus}
                             variant="contained"
@@ -110,11 +132,30 @@ const App = () => {
                 token="BQA4O_zFd-knN-WC76MKILhomAS3rO6koJ0CVLI2kyt9z0LLTDtgR85gItqi8rFYGF4LJS1W88lOmWs3uSDOa-bSrjSR-a1O0vn49BqXKdXbAKxeBhqmGNk34ct0sr4CUwIBDS_cNKQPP2cfisti6_svsuBUu1E"
                 uris={["spotify:artist:6HQYnRM4OzToCYPpVBInuU"]}
             /> */}
-                <div style={{ width: "50%", justifyContent: "center", alignItems: "center" }}>
-                    <SpotifyPlayer uri="spotify:album:1TIUsv8qmYLpBEhvmBmyBk" width="100%" view="coverart" theme="black" />
+                <div
+                    style={{
+                        width: "50%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                >
+                    <SpotifyPlayer
+                        uri="spotify:album:1TIUsv8qmYLpBEhvmBmyBk"
+                        width="100%"
+                        view="coverart"
+                        theme="black"
+                    />
                 </div>
                 <a href="https://github.com/fool1280/howdy-hack-2021">
-                    <GitHubIcon style={{ margin: "12px", position: "fixed", bottom: "0px", right: "0px", color: "whitesmoke" }} />{" "}
+                    <GitHubIcon
+                        style={{
+                            margin: "12px",
+                            position: "fixed",
+                            bottom: "0px",
+                            right: "0px",
+                            color: "whitesmoke",
+                        }}
+                    />{" "}
                 </a>
             </div>
         </div>

@@ -1,7 +1,7 @@
 from .serializers import PostSerializer
 from .models import Post
 from rest_framework.views import APIView
-from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 from rest_framework import status
 import cv2
@@ -13,7 +13,7 @@ from fer import FER
 
 
 class PostView(APIView):
-    parser_classes = (MultiPartParser, FormParser)
+    parser_classes = [JSONParser]
 
     def get(self, request, *args, **kwargs):
         posts = Post.objects.all()
@@ -22,7 +22,7 @@ class PostView(APIView):
 
 
 class PostCreate(APIView):
-    parser_classes = (MultiPartParser, FormParser)
+    parser_classes = [JSONParser]
 
     def post(self, request, *args, **kwargs):
         posts_serializer = PostSerializer(data=request.data)
