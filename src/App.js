@@ -20,7 +20,7 @@ function App() {
           Learn React
         </a>
 
-        < GetRequest/>
+        < GetRequest />
       </header>
     </div>
   );
