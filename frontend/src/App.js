@@ -55,7 +55,7 @@ const App = () => {
         <div style={{ alignItems: "center", textAlign: "center" }}>
             <h1>mello.</h1>
             <div style={{ display: "flex", flexDirection: "row", alignItems: "center", textAlign: "center" }}>
-            <div>
+            <div style={{width:"50%", justifyContent: "center", alignItems: "center"}}>
                 <div style={{ justifyContent: "center", alignItems: "center", textAlign: "center" }}>
                     <Webcam
                         audio={false}
@@ -117,7 +117,7 @@ const App = () => {
                 token="BQA4O_zFd-knN-WC76MKILhomAS3rO6koJ0CVLI2kyt9z0LLTDtgR85gItqi8rFYGF4LJS1W88lOmWs3uSDOa-bSrjSR-a1O0vn49BqXKdXbAKxeBhqmGNk34ct0sr4CUwIBDS_cNKQPP2cfisti6_svsuBUu1E"
                 uris={["spotify:artist:6HQYnRM4OzToCYPpVBInuU"]}
             /> */}
-            <div>
+            <div style={{width:"50%", justifyContent: "center", alignItems: "center"}}>
                 <h1></h1>
                 <SpotifyPlayer uri="spotify:album:1TIUsv8qmYLpBEhvmBmyBk" view="coverart" theme="black" />
             </div>
