@@ -52,69 +52,73 @@ const App = () => {
     }, [webcamRef, setimgSrc]);
 
     return (
-        <div>
-            <div style={{ justifyContent: "center", alignItems: "center", textAlign: "center" }}>
-                <h1>mello.</h1>
-                <Webcam
-                    audio={false}
-                    ref={webcamRef}
-                    screenshotFormat="image/png"
-                    style={{
-                        width: "30%",
-                        height: "30%",
-                        display: "flex",
-                        margin: "auto",
-                        marginBottom: "5px",
-                        flexWrap: "wrap",
-                        justifyContent: "center",
-                        border: "2px solid",
-                        borderColor: "#312545",
-                        borderRadius: "10px",
-                        transform: "rotateY(180deg)",
-                    }}
-                />
+        <div style={{ display: "flex", flexDirection: "row" }}>
+            <div>
+                <div style={{ justifyContent: "center", alignItems: "center", textAlign: "center" }}>
+                    <h1>mello.</h1>
+                    <Webcam
+                        audio={false}
+                        ref={webcamRef}
+                        screenshotFormat="image/png"
+                        style={{
+                            width: "30%",
+                            height: "30%",
+                            display: "flex",
+                            margin: "auto",
+                            marginBottom: "5px",
+                            flexWrap: "wrap",
+                            justifyContent: "center",
+                            border: "2px solid",
+                            borderColor: "#312545",
+                            borderRadius: "10px",
+                            transform: "rotateY(180deg)",
+                        }}
+                    />
+                </div>
+                <div style={{ justifyContent: "center", alignItems: "center" }}>
+                    <Button
+                        disabled={buttonStatus}
+                        variant="contained"
+                        color="secondary"
+                        onClick={capture}
+                        style={{
+                            display: "flex",
+                            margin: "auto",
+                            marginBottom: "5px",
+                            width: 300,
+                            flexWrap: "wrap",
+                            justifyContent: "center",
+                        }}
+                    >
+                        Take photo
+                    </Button>
+                </div>
+                {imgSrc && (
+                    <img
+                        src={imgSrc}
+                        style={{
+                            borderRadius: "10px",
+                            border: "2px solid",
+                            width: "30%",
+                            height: "30%",
+                            display: "flex",
+                            margin: "auto",
+                            flexWrap: "wrap",
+                            justifyContent: "center",
+                            borderColor: "#312545",
+                            transform: "rotateY(180deg)",
+                        }}
+                        alt="face capture"
+                    />
+                )}
             </div>
-            <div style={{ justifyContent: "center", alignItems: "center" }}>
-                <Button
-                    disabled={buttonStatus}
-                    variant="contained"
-                    color="secondary"
-                    onClick={capture}
-                    style={{
-                        display: "flex",
-                        margin: "auto",
-                        marginBottom: "5px",
-                        width: 300,
-                        flexWrap: "wrap",
-                        justifyContent: "center",
-                    }}
-                >
-                    Take photo
-                </Button>
-            </div>
-            {imgSrc && (
-                <img
-                    src={imgSrc}
-                    style={{
-                        borderRadius: "10px",
-                        border: "2px solid",
-                        width: "30%",
-                        height: "30%",
-                        display: "flex",
-                        margin: "auto",
-                        flexWrap: "wrap",
-                        justifyContent: "center",
-                        borderColor: "#312545",
-                        transform: "rotateY(180deg)",
-                    }}
-                    alt="face capture"
-                />
-            )}
             {/* <SpotifyPlayer
                 token="BQA4O_zFd-knN-WC76MKILhomAS3rO6koJ0CVLI2kyt9z0LLTDtgR85gItqi8rFYGF4LJS1W88lOmWs3uSDOa-bSrjSR-a1O0vn49BqXKdXbAKxeBhqmGNk34ct0sr4CUwIBDS_cNKQPP2cfisti6_svsuBUu1E"
                 uris={["spotify:artist:6HQYnRM4OzToCYPpVBInuU"]}
             /> */}
-            <SpotifyPlayer uri="spotify:album:1TIUsv8qmYLpBEhvmBmyBk" view="coverart" theme="black" />
+            <div>
+                <SpotifyPlayer uri="spotify:album:1TIUsv8qmYLpBEhvmBmyBk" view="coverart" theme="black" />
+            </div>
             <a href="https://github.com/fool1280/howdy-hack-2021">
                 <GitHubIcon style={{ margin: "12px", position: "fixed", bottom: "0px", right: "0px", color: "whitesmoke" }} />{" "}
             </a>
