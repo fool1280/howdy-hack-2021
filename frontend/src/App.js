@@ -118,15 +118,9 @@ const App = () => {
         if (!(mood === "")) {
             console.log("mood:", mood);
             getInfoPlaceHolder();
-        }
-        if (minTempo !== 0) {
-            console.log("minDance:", minDanceability);
-            console.log("minEnergy:", minEnergy);
-            console.log("minLoudness:", minLoudness);
-            console.log("minPopularity:", minPopularity);
-            console.log("minTempo:", minTempo);
-            console.log("minValence:", minValence);
-            getSuggestSong();
+            if (minTempo !== 0) {
+                getSuggestSong();
+            }
         }
     }, [
         imgSrc,
@@ -224,20 +218,6 @@ const App = () => {
                         />
                     )}
                 </div>
-                {/* <div
-                    style={{
-                        width: "50%",
-                        justifyContent: "center",
-                        alignItems: "center",
-                    }}
-                >
-                    <SpotifyPlayer
-                        uri="spotify:album:1TIUsv8qmYLpBEhvmBmyBk"
-                        width="100%"
-                        view="coverart"
-                        theme="black"
-                    />
-                </div> */}
                 <div
                     style={{
                         width: "50%",
@@ -246,18 +226,29 @@ const App = () => {
                     }}
                 >
                     {suggestSong.length !== 0 ? (
-                        <div>
-                            <SpotifyPlayer
-                                uri={suggestSong[0].uri}
-                                width="100%"
-                                view="coverart"
-                                theme="black"
-                            />
-                        </div>
+                        mood === "surprise" ? (
+                            <div>
+                                <SpotifyPlayer
+                                    uri="spotify:track:4cOdK2wGLETKBW3PvgPWqT"
+                                    width="100%"
+                                    view="coverart"
+                                    theme="black"
+                                />
+                            </div>
+                        ) : (
+                            <div>
+                                <SpotifyPlayer
+                                    uri={suggestSong[0].uri}
+                                    width="100%"
+                                    view="coverart"
+                                    theme="black"
+                                />
+                            </div>
+                        )
                     ) : (
                         <div>
                             <SpotifyPlayer
-                                uri="spotify:track:4cOdK2wGLETKBW3PvgPWqT"
+                                uri="spotify:track:0mHyWYXmmCB9iQyK18m3FQ"
                                 width="100%"
                                 view="coverart"
                                 theme="black"
