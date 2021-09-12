@@ -245,14 +245,25 @@ const App = () => {
                         alignItems: "center",
                     }}
                 >
-                    <div>
-                        <SpotifyPlayer
-                            uri="spotify:track:4cOdK2wGLETKBW3PvgPWqT"
-                            width="100%"
-                            view="coverart"
-                            theme="black"
-                        />
-                    </div>
+                    {suggestSong.length !== 0 ? (
+                        <div>
+                            <SpotifyPlayer
+                                uri={suggestSong[0].uri}
+                                width="100%"
+                                view="coverart"
+                                theme="black"
+                            />
+                        </div>
+                    ) : (
+                        <div>
+                            <SpotifyPlayer
+                                uri="spotify:track:4cOdK2wGLETKBW3PvgPWqT"
+                                width="100%"
+                                view="coverart"
+                                theme="black"
+                            />
+                        </div>
+                    )}
                 </div>
                 <a href="https://github.com/fool1280/howdy-hack-2021">
                     <GitHubIcon
