@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const access_token ='BQDPKlgHNjB2sxJ9m7UzUChDQRzTts80Iyl2YiMgJdTLS2qJNf7D-wNkVnJ4axHXgyZrmhpB1kPJQJZ8dLtzWqKFUEwDD_boP6lyif695srUBOGsi_WVV_cpOoluLS8LpYtUnoYgYYzCymmDkkfz_ni_03yWsfm7Llhtm8ni44E'
+const access_token ='BQBC11-b0-QbeXk2QvcGkJgpAAmIzsep88zGCHRfK8KsKm1Dd93WsdK_qrQU-HPlsGcfDUce3oSJjw6zgB203eNRdjCPtodL77OxhNfb12HYj0FQb6NVTGi0zBWsTUeYFHBTf-VD3M_dQtyz6EERWWjzy6h70FFyalJgTe18HZY'
 
 function GetRequest() {
+    const mood = 'sad'
+    const allMood = ['sad', 'angry', 'fear', 'happy', 'disgust', 'neutral', 'surprise']
+    const [limit, setLimit] = useState('1');
     const [suggestSong, setSuggestSong] = useState([]);
     const [market, setMarket] = useState('US')
     const [gernes, setGernes] = useState('')
@@ -14,10 +17,10 @@ function GetRequest() {
     const [minLoudness, setMinLoudness] = useState(0);
     const [maxLoudness, setMaxLoudness] = useState(0);
     const [minPopularity, setMinPopularity] = useState(0);
-    const [maxPopularity, setMaxPopularity] = useState(0);
+    const [maxPopularity, setMaxPopularity] = useState(1);
     const [minValence, setMinValence] = useState(0);
     const [maxValence, setMaxValence] = useState(0);
-    
+
     // const getMood = async() => {
     //     let url = "placeholder" //fix later
 
@@ -31,7 +34,7 @@ function GetRequest() {
 
     const getSuggestSong = async() => {
         console.log(market);
-        let url = 'https://api.spotify.com/v1/recommendations?limit=3&market='+market+'&seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres='+gernes+'&seed_tracks=0c6xIDDpzE81m2q797ordA';
+        let url = 'https://api.spotify.com/v1/recommendations?limit=1&market='+market+'&seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres='+gernes+'&seed_tracks=0c6xIDDpzE81m2q797ordA';
         let result = await axios.get(url, {headers: {
                 'Authorization': `Bearer ${access_token}`,
                 'Content-Type': 'application/json',
@@ -54,6 +57,8 @@ function GetRequest() {
         <div>
             {suggestSong.map((item) => <p>{item.name}</p>)}
             <a style={{display: "table-cell"}} href="https://open.spotify.com/album/6VolTYHN9P3gZS1ugOkI1K" target="_blank">text</a>
+            {allMood[0]}
+            asd
         </div>
     )
 }
