@@ -32,9 +32,9 @@ const App = () => {
         let result = await axios
             .post(url, data, { headers })
             .then((result) => result.data);
-        console.log("Result:", result);
         setMood(result);
         setButton(false);
+        console.log("mood:", mood);
     };
     useEffect(() => {
         if (!(imgSrc === null)) {
