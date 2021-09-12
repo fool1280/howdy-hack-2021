@@ -53,9 +53,11 @@ const App = () => {
 
     return (
         <div style={{ display: "flex", flexDirection: "row" }}>
+            <div style={{ justifyContent: "center", alignItems: "center", textAlign: "center"}}>
+                <h1>mello.</h1>
+            </div>
             <div>
                 <div style={{ justifyContent: "center", alignItems: "center", textAlign: "center" }}>
-                    <h1>mello.</h1>
                     <Webcam
                         audio={false}
                         ref={webcamRef}
