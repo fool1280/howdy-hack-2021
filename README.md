@@ -1,6 +1,9 @@
 # Howdy Hack 2021
 
 ## Team Members
+A picture of our team: 
+
+![241961639_386473156421657_8259089015619180550_n](https://user-images.githubusercontent.com/24601461/132996435-924228ad-d089-417f-baf1-65c02f9bc1fd.png)
 
 Kaleb Dickerson, Phu (Jack) Nguyen, Anh Nguyen, Anh Hoang.
 
