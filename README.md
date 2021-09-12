@@ -10,7 +10,7 @@ Our project is called "Mello." which is a play on the emotion "mellow" and "melo
 ## Running the Program
 To run the program, first pull the reposity using your favorite environment.
 ### Front End
-    1. 
+    1. Open a terminal
     2. `cd frontend` to navigate to the front end folder
     3. `npm install` to install the required modules
     4. `npm start` to initiate the front end once the install is completed. 
