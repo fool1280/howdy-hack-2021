@@ -1,45 +1,16 @@
-import React, { useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import Webcam from "react-webcam";
+import axios from "axios";
 import "./App.css";
 import axios from "axios";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import SpotifyPlayer from "react-spotify-player";
 // import SpotifyPlayer from "react-spotify-web-playback";
 
-function postImage(image, title) {
-    let form_data = new FormData();
-    form_data.append("title", title);
-    form_data.append("image", image);
-    let url = "http://localhost:8000/uploads";
-    axios
-        .post(url, form_data, {
-            headers: {
-                "content-type": "multipart/form-data",
-            },
-        })
-        .then((res) => {
-            console.log(res.data);
-        })
-        .catch((err) => console.log(err));
-}
-
-async function getCategory() {
-    fetch("https://localhost:8000", {
-        method: "POST",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            firstParam: "yourValue",
-            secondParam: "yourOtherValue",
-        }),
-    });
-}
-
 const App = () => {
     const [buttonStatus, setButton] = useState(false);
+    const [mood, setMood] = useState("");
     const webcamRef = React.useRef(null);
     const [imgSrc, setimgSrc] = useState(null);
 
@@ -51,6 +22,27 @@ const App = () => {
         setimgSrc(imageSrc);
     }, [webcamRef, setimgSrc]);
 
+    const sendData = async () => {
+        let data = JSON.stringify({
+            title: "test",
+            content: imgSrc,
+        });
+        //console.log("Data:", data);
+        let url = "http://localhost:8000/ferapp/posts/create/";
+        let headers = {
+            "Content-Type": "application/json",
+        };
+        let result = await axios
+            .post(url, data, { headers })
+            .then((result) => result.data);
+        console.log("Result:", result);
+        setButton(false);
+    };
+    useEffect(() => {
+        if (!(imgSrc === null)) {
+            sendData(imgSrc);
+        }
+    }, [buttonStatus, imgSrc]);
     return (
         <div style={{ alignItems: "center", textAlign: "center" }}>
             <h1>mello.</h1>
