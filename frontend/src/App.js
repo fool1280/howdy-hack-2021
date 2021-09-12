@@ -4,9 +4,8 @@ import Webcam from "react-webcam";
 import "./App.css";
 import axios from "axios";
 import GitHubIcon from "@material-ui/icons/GitHub";
-import SpotifyPlayer from "react-spotify-player";
+import GetSpotifySong from "./components/GetSpotifySong";
 
-import GetSongRequest from "./components/GetSongRequest";
 // import SpotifyPlayer from "react-spotify-web-playback";
 
 function postImage(image, title) {
@@ -121,13 +120,12 @@ const App = () => {
                 uris={["spotify:artist:6HQYnRM4OzToCYPpVBInuU"]}
             /> */}
                 <div style={{ width: "50%", justifyContent: "center", alignItems: "center" }}>
-                    <SpotifyPlayer uri="spotify:album:1TIUsv8qmYLpBEhvmBmyBk" width="100%" view="coverart" theme="black" />
+                    <GetSpotifySong />
                 </div>
                 <a href="https://github.com/fool1280/howdy-hack-2021">
                     <GitHubIcon style={{ margin: "12px", position: "fixed", bottom: "0px", right: "0px", color: "whitesmoke" }} />{" "}
                 </a>
             </div>
-        <GetSongRequest/>
         </div>
     );
 };

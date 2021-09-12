@@ -93,9 +93,10 @@ function GetSongRequest() {
             </a>
         )
     } else return (
-        <div>
-            {suggestSong.map((item) => <p>{item.name}</p>)}
-        </div>
+        suggestSong
+        // <div>
+        //     {suggestSong.map((item) => <p>{item.name}</p>)}
+        // </div>
     )
 }
 //{suggestSong.map((item) => <p>{item}</p>)}
