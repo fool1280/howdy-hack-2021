@@ -8,6 +8,8 @@ charset-normalizer==2.0.4
 clang==5.0
 cycler==0.10.0
 Django==3.2.7
+django-cors-headers==3.8.0
+djangorestframework==3.12.4
 fer==21.0.3
 flatbuffers==1.12
 gast==0.4.0
