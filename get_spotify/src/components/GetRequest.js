@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const access_token ='BQBC11-b0-QbeXk2QvcGkJgpAAmIzsep88zGCHRfK8KsKm1Dd93WsdK_qrQU-HPlsGcfDUce3oSJjw6zgB203eNRdjCPtodL77OxhNfb12HYj0FQb6NVTGi0zBWsTUeYFHBTf-VD3M_dQtyz6EERWWjzy6h70FFyalJgTe18HZY'
+const access_token ='BQC7RawkTEipX-NTlEJxf3jP6tIyDQBcrK-VHjFnwhT9ZkQVS2IGN0eo55R4_k1mlMcDn5_t7m63HrqsSYiGabZhA1GBiNZHBPxcLxYhThNh_YaOH6c34n0y4wuBEwBfb2MTXUIVZAz3NhNH4G1m3F595a9C6Cgxm1dt55HnZIQ'
 
 function GetRequest() {
     const mood = 'sad'
@@ -21,22 +21,23 @@ function GetRequest() {
     const allMaxTempo =         [  200,     150,    180,     180,       170,        200,         1]      
 
     const [moodID, setMoodID] = useState(0);
-    const [limit, setLimit] = useState(1);
     const [suggestSong, setSuggestSong] = useState([]);
-    const [market, setMarket] = useState('US')
+    const [market, setMarket] = useState('UK')
     const [gernes, setGernes] = useState('')
     const [minDanceability, setMinDanceability] = useState(0);
-    const [maxDanceability, setMaxDanceability] = useState(0);
+    const [maxDanceability, setMaxDanceability] = useState(1);
     const [minEnergy, setMinEnergy] = useState(0);
-    const [maxEnergy, setMaxEnergy] = useState(0);
-    const [minLoudness, setMinLoudness] = useState(0);
+    const [maxEnergy, setMaxEnergy] = useState(1);
+    const [minLoudness, setMinLoudness] = useState(-50);
     const [maxLoudness, setMaxLoudness] = useState(0);
-    const [minPopularity, setMinPopularity] = useState(0.5);
-    const [maxPopularity, setMaxPopularity] = useState(1);
+
     const [minValence, setMinValence] = useState(0);
-    const [maxValence, setMaxValence] = useState(0);
+    const [maxValence, setMaxValence] = useState(1);
     const [minTempo, setMinTempo] = useState(0);
     const [maxTempo, setMaxTempo] = useState(200);
+
+    const minPopularity = 0.00;
+    const maxPopularity = 1;            //need more research
     // const getMood = async() => {
     //     let url = "placeholder" //fix later
 
@@ -45,14 +46,14 @@ function GetRequest() {
     const getInfoPlaceHolder = async() => {
         setMarket('US');
         setGernes('country');
-        getSuggestSong();
-        setMoodID(allMood.findIndex(element => element = 'sad'));
+        setMoodID(allMood.findIndex(element => element = 'sad')); // fix this later
         setMinDanceability(allMinDanceability[moodID])
         setMaxDanceability(allMinDanceability[moodID])
         setMinEnergy(allMinEnergy[moodID])
         setMaxEnergy(allMaxEnergy[moodID])
         setMinLoudness(allMinLoudness[moodID])
         setMaxLoudness(allMaxLoudness[moodID])
+        
         setMinValence(allMinValence[moodID])
         setMaxValence(allMaxValence[moodID])
         setMinTempo(allMinTempo[moodID])
@@ -60,13 +61,18 @@ function GetRequest() {
     }
 
     const getSuggestSong = async() => {
-        console.log(market);
+        console.log("initi",market);
+        console.log(gernes)
         let url = 'https://api.spotify.com/v1/recommendations?limit=1&market='+market
         +'&seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres='+gernes
         +'&seed_tracks=0c6xIDDpzE81m2q797ordA'
         +'&min_danceability='+minDanceability
-        +&max_danceability=1&min_energy=1&max_energy=1&min_loudness=1&max_loudness=1&min_popularity=1&max_popularity=1&min_tempo=1&max_tempo=1&min_valence=1&max_valence=1
-        ;
+        +'&min_energy='+minEnergy
+        +'&min_loudness='+minLoudness
+        //+'&min_popularity='+minPopularity
+        +'&min_tempo='+minTempo
+        +'&min_valence='+minValence;
+        console.log(url)
         let result = await axios.get(url, {headers: {
                 'Authorization': `Bearer ${access_token}`,
                 'Content-Type': 'application/json',
@@ -78,7 +84,8 @@ function GetRequest() {
     }
     useEffect(() => {
         getInfoPlaceHolder(); //fix to get info later
-    }, [])
+        getSuggestSong();
+    }, [market])
     if (suggestSong.length === 0) {
         return (
             <a>
