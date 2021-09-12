@@ -1,10 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import Webcam from "react-webcam";
+import axios from "axios";
 import "./App.css";
 
 const App = () => {
     const [buttonStatus, setButton] = useState(false);
+    const [mood, setMood] = useState("");
     const webcamRef = React.useRef(null);
     const [imgSrc, setimgSrc] = useState(null);
 
@@ -15,6 +17,27 @@ const App = () => {
         setimgSrc(imageSrc);
     }, [webcamRef, setimgSrc]);
 
+    const sendData = async () => {
+        let data = JSON.stringify({
+            title: "test",
+            content: imgSrc,
+        });
+        //console.log("Data:", data);
+        let url = "http://localhost:8000/ferapp/posts/create/";
+        let headers = {
+            "Content-Type": "application/json",
+        };
+        let result = await axios
+            .post(url, data, { headers })
+            .then((result) => result.data);
+        console.log("Result:", result);
+        setButton(false);
+    };
+    useEffect(() => {
+        if (!(imgSrc === null)) {
+            sendData(imgSrc);
+        }
+    }, [buttonStatus, imgSrc]);
     return (
         <div>
             <div
