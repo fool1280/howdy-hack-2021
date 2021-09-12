@@ -13,7 +13,6 @@ const App = () => {
     const capture = React.useCallback(() => {
         const imageSrc = webcamRef.current.getScreenshot();
         setButton(true);
-        // const data = imageSrc;
         setimgSrc(imageSrc);
     }, [webcamRef, setimgSrc]);
 
@@ -22,22 +21,23 @@ const App = () => {
             title: "test",
             content: imgSrc,
         });
-        //console.log("Data:", data);
         let url = "http://localhost:8000/ferapp/posts/create/";
         let headers = {
             "Content-Type": "application/json",
+            Accept: "application/json",
         };
         let result = await axios
             .post(url, data, { headers })
             .then((result) => result.data);
         console.log("Result:", result);
+        setMood(result);
         setButton(false);
     };
     useEffect(() => {
         if (!(imgSrc === null)) {
             sendData(imgSrc);
         }
-    }, [buttonStatus, imgSrc]);
+    }, [imgSrc]);
     return (
         <div>
             <div
