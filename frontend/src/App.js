@@ -5,7 +5,7 @@ import "./App.css";
 import axios from "axios";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import GetSpotifySong from "./components/GetSpotifySong";
-
+import GetSongRequest from "./components/GetSongRequest";
 // import SpotifyPlayer from "react-spotify-web-playback";
 
 function postImage(image, title) {
@@ -122,10 +122,11 @@ const App = () => {
                 <div style={{ width: "50%", justifyContent: "center", alignItems: "center" }}>
                     <GetSpotifySong />
                 </div>
-                <a href="https://github.com/fool1280/howdy-hack-2021">
+                {/* <a href="https://github.com/fool1280/howdy-hack-2021">
                     <GitHubIcon style={{ margin: "12px", position: "fixed", bottom: "0px", right: "0px", color: "whitesmoke" }} />{" "}
-                </a>
+                </a> */}
             </div>
+            <GetSongRequest />
         </div>
     );
 };

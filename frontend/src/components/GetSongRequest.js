@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import GetSpotifySong from './GetSpotifySong';
 
-const access_token ='BQC7RawkTEipX-NTlEJxf3jP6tIyDQBcrK-VHjFnwhT9ZkQVS2IGN0eo55R4_k1mlMcDn5_t7m63HrqsSYiGabZhA1GBiNZHBPxcLxYhThNh_YaOH6c34n0y4wuBEwBfb2MTXUIVZAz3NhNH4G1m3F595a9C6Cgxm1dt55HnZIQ'
-
+const access_token ='BQC8HD4ph9POKC2bm-K_t8QkPLUPSfsUSO5_chycwDmQI_idLwAGireMj9VyMcHEkC2kSTYZ9Oh1kip2qgN5R3C8Ht_dCySCmwJT5nU8-CQLUe-HXS6v_b_DAP4G_QZzMDp2JdNKYLSx7iG-k_n91DijVlDJ9T1ndlQBPxOoFnE'
 function GetSongRequest() {
     const mood = 'sad'
     const allMood =             ['sad', 'angry', 'fear', 'happy', 'disgust', 'neutral', 'surprise']
@@ -25,16 +25,10 @@ function GetSongRequest() {
     const [market, setMarket] = useState('UK')
     const [gernes, setGernes] = useState('')
     const [minDanceability, setMinDanceability] = useState(0);
-    const [maxDanceability, setMaxDanceability] = useState(1);
     const [minEnergy, setMinEnergy] = useState(0);
-    const [maxEnergy, setMaxEnergy] = useState(1);
     const [minLoudness, setMinLoudness] = useState(-50);
-    const [maxLoudness, setMaxLoudness] = useState(0);
-
     const [minValence, setMinValence] = useState(0);
-    const [maxValence, setMaxValence] = useState(1);
     const [minTempo, setMinTempo] = useState(0);
-    const [maxTempo, setMaxTempo] = useState(200);
 
     const minPopularity = 0.00;
     const maxPopularity = 1;            //need more research
@@ -48,56 +42,51 @@ function GetSongRequest() {
         setGernes('country');
         setMoodID(allMood.findIndex(element => element = 'sad')); // fix this later
         setMinDanceability(allMinDanceability[moodID])
-        setMaxDanceability(allMinDanceability[moodID])
         setMinEnergy(allMinEnergy[moodID])
-        setMaxEnergy(allMaxEnergy[moodID])
         setMinLoudness(allMinLoudness[moodID])
-        setMaxLoudness(allMaxLoudness[moodID])
-        
         setMinValence(allMinValence[moodID])
-        setMaxValence(allMaxValence[moodID])
         setMinTempo(allMinTempo[moodID])
-        setMaxTempo(allMaxTempo[moodID])
     }
 
     const getSuggestSong = async() => {
-        console.log("initi",market);
-        console.log(gernes)
         let url = 'https://api.spotify.com/v1/recommendations?limit=1&market='+market
         +'&seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres='+gernes
-        +'&seed_tracks=0c6xIDDpzE81m2q797ordA'
-        +'&min_danceability='+minDanceability
-        +'&min_energy='+minEnergy
-        +'&min_loudness='+minLoudness
+        +'&seed_tracks=0c6xIDDpzE81m2q797ordA';
+        //+'&min_danceability='+minDanceability
+        //+'&min_energy='+minEnergy
+        //+'&min_loudness='+minLoudness
         //+'&min_popularity='+minPopularity
-        +'&min_tempo='+minTempo
-        +'&min_valence='+minValence;
-        console.log(url)
+        //+'&min_tempo='+minTempo
+        //+'&min_valence='+minValence;
         let result = await axios.get(url, {headers: {
                 'Authorization': `Bearer ${access_token}`,
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
                 }
         }).then((res) => res.data.tracks);
+        console.log('result',result)
         setSuggestSong(result);
-        console.log("suggestSong: ", suggestSong);
+        
     }
+    const returnfromSpot = GetSpotifySong(suggestSong);
     useEffect(() => {
         getInfoPlaceHolder(); //fix to get info later
-        getSuggestSong();
-    }, [market])
+        //getSuggestSong();
+    }, [market, suggestSong])
     if (suggestSong.length === 0) {
         return (
             <a>
                 Loading .........
             </a>
         )
-    } else return (
-        suggestSong
-        // <div>
-        //     {suggestSong.map((item) => <p>{item.name}</p>)}
-        // </div>
-    )
+    } else { 
+        console.log("trong ko",suggestSong);
+        return (
+        <div>
+            {suggestSong.map((item) => <p>{item.name}</p>)}
+        </div>
+        )
+    }
 }
 //{suggestSong.map((item) => <p>{item}</p>)}
 export default GetSongRequest;
